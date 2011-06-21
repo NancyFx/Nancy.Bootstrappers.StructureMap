@@ -4,126 +4,130 @@ using StructureMap;
 
 namespace Nancy.Bootstrappers.StructureMap
 {
-    using System;
-    using ModelBinding;
-    using Nancy.ViewEngines;
-
-    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperBase<IContainer>, INancyBootstrapperPerRequestRegistration<IContainer>, INancyModuleCatalog
+    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
         /// <summary>
-        /// Container instance
+        /// Gets all registered startup tasks
         /// </summary>
-        protected IContainer _Container;
+        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IStartup"/> instances. </returns>
+        protected override IEnumerable<IStartup> GetStartupTasks()
+        {
+            return this.ApplicationContainer.GetAllInstances<IStartup>();
+        }
 
         /// <summary>
         /// Resolve INancyEngine
         /// </summary>
         /// <returns>INancyEngine implementation</returns>
-        protected sealed override INancyEngine GetEngineInternal()
+        protected override INancyEngine GetEngineInternal()
         {
-            return _Container.GetInstance<INancyEngine>();
+            return this.ApplicationContainer.GetInstance<INancyEngine>();
         }
 
         /// <summary>
         /// Get the moduleKey generator
         /// </summary>
         /// <returns>IModuleKeyGenerator instance</returns>
-        protected sealed override IModuleKeyGenerator GetModuleKeyGenerator()
+        protected override IModuleKeyGenerator GetModuleKeyGenerator()
         {
-            return _Container.GetInstance<IModuleKeyGenerator>();
+            return this.ApplicationContainer.GetInstance<IModuleKeyGenerator>();
         }
 
         /// <summary>
-        /// Configures the container with defaults for application scope
+        /// Gets the application level container
         /// </summary>
-        /// <param name="existingContainer"></param>
-        protected override void ConfigureApplicationContainer(IContainer existingContainer)
+        /// <returns>Container instance</returns>
+        protected override IContainer GetApplicationContainer()
         {
-            base.ConfigureApplicationContainer(existingContainer);
-        }
-
-        protected override void RegisterModelBinders(IContainer container, IEnumerable<Type> modelBinderTypes)
-        {
-            _Container.Configure(registry =>
-            {
-                foreach (var modelBinder in modelBinderTypes)
-                {
-                    registry.For(typeof(IModelBinder)).LifecycleIs(InstanceScope.Singleton).Use(modelBinder);
-                }
-            });
-        }
-
-        protected override void RegisterTypeConverters(IContainer container, IEnumerable<Type> typeConverterTypes)
-        {
-            _Container.Configure(registry =>
-            {
-                foreach (var typeConverter in typeConverterTypes)
-                {
-                    registry.For(typeof(ITypeConverter)).LifecycleIs(InstanceScope.Singleton).Use(typeConverter);
-                }
-            });
-        }
-
-        protected override void RegisterBodyDeserializers(IContainer container, IEnumerable<Type> bodyDeserializerTypes)
-        {
-            _Container.Configure(registry =>
-            {
-                foreach (var bodyDeserializer in bodyDeserializerTypes)
-                {
-                    registry.For(typeof(IBodyDeserializer)).LifecycleIs(InstanceScope.Singleton).Use(bodyDeserializer);
-                }
-            });
-        }
-
-        protected override void RegisterViewSourceProviders(IContainer container, IEnumerable<Type> viewSourceProviderTypes)
-        {
-            _Container.Configure(registry =>
-            {
-                foreach (var viewSourceProvider in viewSourceProviderTypes)
-                {
-                    registry.For(typeof(IViewSourceProvider)).LifecycleIs(InstanceScope.Singleton).Use(viewSourceProvider);
-                }
-            });
-        }
-
-        protected override void RegisterViewEngines(IContainer container, IEnumerable<Type> viewEngineTypes)
-        {
-            _Container.Configure(registry =>
-            {
-                foreach (var viewEngineType in viewEngineTypes)
-                {
-                    registry.For(typeof(IViewEngine)).LifecycleIs(InstanceScope.Singleton).Use(viewEngineType);
-                }
-            });
-        }
-
-        public virtual void ConfigureRequestContainer(IContainer container)
-        {
+            return new Container();
         }
 
         /// <summary>
-        /// Creates a new container instance
+        /// Register the bootstrapper's implemented types into the container.
+        /// This is necessary so a user can pass in a populated container but not have
+        /// to take the responsibility of registering things like INancyModuleCatalog manually.
         /// </summary>
-        /// <returns>A new StructureMap container</returns>
-        protected sealed override IContainer CreateContainer()
+        /// <param name="applicationContainer">Application container to register into</param>
+        protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
         {
-            _Container = new Container();
-
-            return _Container;
+            applicationContainer.Configure(registry => registry.For<INancyModuleCatalog>().Singleton().Use(this));
         }
 
         /// <summary>
-        /// Registers all modules in the container as multi-instance
+        /// Register the default implementations of internally used types into the container as singletons
         /// </summary>
-        /// <param name="moduleRegistrations">NancyModule registration types</param>
-        protected sealed override void RegisterModules(IEnumerable<ModuleRegistration> moduleRegistrations)
+        /// <param name="container">Container to register into</param>
+        /// <param name="typeRegistrations">Type registrations to register</param>
+        protected override void RegisterTypes(IContainer container, IEnumerable<TypeRegistration> typeRegistrations)
         {
-            _Container.Configure(registry =>
+            container.Configure(registry =>
+                {
+                    foreach (var typeRegistration in typeRegistrations)
+                    {
+                        registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(
+                            typeRegistration.ImplementationType);
+                    }
+                });
+        }
+
+        /// <summary>
+        /// Register the various collections into the container as singletons to later be resolved
+        /// by IEnumerable{Type} constructor dependencies.
+        /// </summary>
+        /// <param name="container">Container to register into</param>
+        /// <param name="collectionTypeRegistrationsn">Collection type registrations to register</param>
+        protected override void RegisterCollectionTypes(IContainer container, IEnumerable<CollectionTypeRegistration> collectionTypeRegistrationsn)
+        {
+            container.Configure(registry =>
             {
-                foreach (var registrationType in moduleRegistrations)
+                foreach (var collectionTypeRegistration in collectionTypeRegistrationsn)
+                {
+                    foreach (var implementationType in collectionTypeRegistration.ImplementationTypes)
+                    {
+                        registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(implementationType);
+                    }
+                }
+            });
+        }
+
+        /// <summary>
+        /// Register the given instances into the container
+        /// </summary>
+        /// <param name="container">Container to register into</param>
+        /// <param name="instanceRegistrations">Instance registration types</param>
+        protected override void RegisterInstances(IContainer container, IEnumerable<InstanceRegistration> instanceRegistrations)
+        {
+            container.Configure(registry =>
+            {
+                foreach (var instanceRegistration in instanceRegistrations)
+                {
+                    registry.For(instanceRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(instanceRegistration.Implementation);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Creates a per request child/nested container
+        /// </summary>
+        /// <returns>Request container instance</returns>
+        protected override IContainer CreateRequestContainer()
+        {
+            return this.ApplicationContainer.GetNestedContainer();
+        }
+
+        /// <summary>
+        /// Register the given module types into the request container
+        /// </summary>
+        /// <param name="container">Container to register into</param>
+        /// <param name="moduleRegistrationTypes">NancyModule types</param>
+        protected override void RegisterRequestContainerModules(IContainer container, IEnumerable<ModuleRegistration> moduleRegistrationTypes)
+        {
+            container.Configure(registry =>
+            {
+                foreach (var registrationType in moduleRegistrationTypes)
                 {
                     registry.For(typeof(NancyModule))
-                        .LifecycleIs(InstanceScope.PerRequest)
+                        .LifecycleIs(InstanceScope.Singleton)
                         .Use(registrationType.ModuleType)
                         .Named(registrationType.ModuleKey);
                 }
@@ -131,45 +135,24 @@ namespace Nancy.Bootstrappers.StructureMap
         }
 
         /// <summary>
-        /// Register the default implementations of internally used types into the container as singletons
+        /// Retrieve all module instances from the container
         /// </summary>
-        protected sealed override void RegisterDefaults(IContainer container, IEnumerable<TypeRegistration> typeRegistrations)
+        /// <param name="container">Container to use</param>
+        /// <returns>Collection of NancyModule instances</returns>
+        protected override IEnumerable<NancyModule> GetAllModules(IContainer container)
         {
-            _Container.Configure(registry =>
-            {
-                registry.For<INancyModuleCatalog>().Singleton().Use(this);
-
-                foreach (var typeRegistration in typeRegistrations)
-                {
-                    registry.For(typeRegistration.RegistrationType)
-                        .Singleton()
-                        .Use(typeRegistration.ImplementationType);
-                }
-            });
+            return container.GetAllInstances<NancyModule>();
         }
 
         /// <summary>
-        /// Get all NancyModule implementation instances
+        /// Retreive a specific module instance from the container by its key
         /// </summary>
-        /// <returns>IEnumerable of NancyModule</returns>
-        public IEnumerable<NancyModule> GetAllModules(NancyContext context)
-        {
-            var childContainer = _Container.GetNestedContainer();
-            ConfigureRequestContainer(childContainer);
-            return childContainer.GetAllInstances<NancyModule>();
-        }
-
-        /// <summary>
-        /// Gets a specific, per-request, module instance by the modulekey
-        /// </summary>
-        /// <param name="moduleKey">ModuleKey</param>
+        /// <param name="container">Container to use</param>
+        /// <param name="moduleKey">Module key of the module</param>
         /// <returns>NancyModule instance</returns>
-        public NancyModule GetModuleByKey(string moduleKey, NancyContext context)
+        protected override NancyModule GetModuleByKey(IContainer container, string moduleKey)
         {
-            // TODO - add child container to context so it's disposed?
-            var childContainer = _Container.GetNestedContainer();
-            ConfigureRequestContainer(childContainer);
-            return childContainer.TryGetInstance<NancyModule>(moduleKey);
+            return container.TryGetInstance<NancyModule>(moduleKey);
         }
     }
 }
