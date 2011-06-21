@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.BootStrappers.Structu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy", "..\dependencies\Nancy\src\Nancy\Nancy.csproj", "{34576216-0DCA-4B0F-A0DC-9075E75A676F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.BootStrappers.StructureMap.Demo", "Nancy.BootStrappers.StructureMap.Demo\Nancy.BootStrappers.StructureMap.Demo.csproj", "{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
