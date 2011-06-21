@@ -4,7 +4,7 @@
     {
         public MainModule()
         {
-            Get["/"] = _ => "Hello!";
+            Get["/"] = _ => View["Index"];
         }
     }
 }

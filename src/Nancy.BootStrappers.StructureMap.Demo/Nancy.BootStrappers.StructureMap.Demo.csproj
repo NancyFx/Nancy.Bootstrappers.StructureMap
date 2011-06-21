@@ -57,7 +57,9 @@
   <ItemGroup>
     <Content Include="Binaries\Nancy.Hosting.Aspnet.dll" />
     <Content Include="Views\Index.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
