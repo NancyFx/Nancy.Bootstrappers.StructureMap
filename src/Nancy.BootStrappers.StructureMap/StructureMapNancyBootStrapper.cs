@@ -127,7 +127,7 @@ namespace Nancy.Bootstrappers.StructureMap
                 foreach (var registrationType in moduleRegistrationTypes)
                 {
                     registry.For(typeof(NancyModule))
-                        .LifecycleIs(InstanceScope.Singleton)
+                        .LifecycleIs(InstanceScope.Unique)
                         .Use(registrationType.ModuleType)
                         .Named(registrationType.ModuleKey);
                 }
