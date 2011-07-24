@@ -34,9 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy.Hosting.Aspnet, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Binaries\Nancy.Hosting.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.6.0\lib\4.0\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.2\lib\StructureMap.dll</HintPath>
@@ -58,7 +58,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Binaries\Nancy.Hosting.Aspnet.dll" />
     <Content Include="Views\Index.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -80,9 +79,9 @@
       <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
       <Name>Nancy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nancy.BootStrappers.StructureMap\Nancy.BootStrappers.StructureMap.csproj">
+    <ProjectReference Include="..\Nancy.BootStrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj">
       <Project>{EA7F58FE-4BF9-4636-9B9C-E07901187237}</Project>
-      <Name>Nancy.BootStrappers.StructureMap</Name>
+      <Name>Nancy.Bootstrappers.StructureMap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.BootStrappers.StructureMap", "Nancy.BootStrappers.StructureMap\Nancy.BootStrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap", "Nancy.BootStrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.BootStrappers.StructureMap.Tests", "Nancy.BootStrappers.StructureMap.Tests\Nancy.BootStrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Tests", "Nancy.BootStrappers.StructureMap.Tests\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy", "..\dependencies\Nancy\src\Nancy\Nancy.csproj", "{34576216-0DCA-4B0F-A0DC-9075E75A676F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.BootStrappers.StructureMap.Demo", "Nancy.BootStrappers.StructureMap.Demo\Nancy.BootStrappers.StructureMap.Demo.csproj", "{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Demo", "Nancy.BootStrappers.StructureMap.Demo\Nancy.Bootstrappers.StructureMap.Demo.csproj", "{F50EDC04-BA90-4264-8205-9EEFC4DDFCA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

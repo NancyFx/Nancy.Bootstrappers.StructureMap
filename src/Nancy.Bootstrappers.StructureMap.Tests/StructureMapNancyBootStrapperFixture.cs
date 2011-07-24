@@ -2,41 +2,12 @@
 {
     using System;
     using System.Linq;
-    using global::StructureMap;
+
     using Nancy.Tests;
     using Xunit;
     using Nancy.Routing;
     using Nancy.Bootstrapper;
     using Nancy.Tests.Fakes;
-    using Nancy.Bootstrappers.StructureMap;
-
-    public class FakeStructureMapNancyBootstrapper : StructureMapNancyBootstrapper
-    {
-        public bool RequestContainerConfigured { get; set; }
-
-        public bool ApplicationContainerConfigured { get; set; }
-
-        public IContainer Container { get { return base.ApplicationContainer; } }
-
-        protected override void ConfigureRequestContainer(IContainer container)
-        {
-            base.ConfigureRequestContainer(container);
-
-            RequestContainerConfigured = true;
-
-            container.Configure(registry =>
-            {
-                registry.For<IFoo>().Singleton().Use<Foo>();
-                registry.For<IDependency>().Singleton().Use<Dependency>();
-            });
-        }
-
-        protected override void ConfigureApplicationContainer(IContainer existingContainer)
-        {
-            ApplicationContainerConfigured = true;
-            base.ConfigureApplicationContainer(existingContainer);
-        }
-    }
 
     public class StructureMapNancyBootstrapperFixture
     {

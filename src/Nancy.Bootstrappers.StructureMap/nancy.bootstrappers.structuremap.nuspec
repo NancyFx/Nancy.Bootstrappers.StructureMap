@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Nancy.Bootstrappers.StructureMap</id>
+    <version>0.6.0</version> <!-- Overridden by rake nuget task but a default is required in nuspec files -->
+    <authors>Andreas Håkansson, Steven Robbins and contributors</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An StructureMap bootstrapper for the Nancy web framework.</description>
+    <summary>Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra. Nancy aim at delivering a low ceremony approach to building light, fast web applications.</summary>
+    <language>en-US</language>
+    <licenseUrl>https://github.com/NancyFx/Nancy/blob/master/license.txt</licenseUrl>
+    <projectUrl>http://nancyfx.org</projectUrl>
+	<dependencies>
+      <dependency id="Nancy" version="[0.6.0]" />
+	  <dependency id="structuremap" version="2.6.2" />
+    </dependencies> 
+    <tags>Nancy StructureMap</tags>
+  </metadata>
+  <files>
+    <file src="build\binaries\Nancy.Bootstrappers.StructureMap.dll" target="lib\net40" />
+    <file src="build\binaries\Nancy.Bootstrappers.StructureMap.pdb" target="lib\net40" />
+    <file src="src\Nancy.Bootstrappers.StructureMap\**\*.cs" target="src" />
+  </files>
+</package>
