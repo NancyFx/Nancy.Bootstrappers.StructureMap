@@ -73,7 +73,8 @@
     <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\ShouldExtensions.cs">
       <Link>ShouldExtensions.cs</Link>
     </Compile>
-    <Compile Include="StructureMapNancyBootStrapperFixture.cs" />
+    <Compile Include="FakeStructureMapNancyBootstrapper.cs" />
+    <Compile Include="StructureMapNancyBootstrapperFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dependencies\Nancy\src\Nancy\Nancy.csproj">
