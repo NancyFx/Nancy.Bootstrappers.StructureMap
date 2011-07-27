@@ -3,7 +3,7 @@ require 'albacore'
 require 'rake/clean'
 require 'rexml/document'
 
-NANCY_VERSION = "0.6.0"
+NANCY_VERSION = "0.7.1"
 OUTPUT = "build"
 CONFIGURATION = 'Release'
 SHARED_ASSEMBLY_INFO = 'src/SharedAssemblyInfo.cs'
@@ -66,12 +66,12 @@ end
 desc "Generates NuGet packages for each project that contains a nuspec"
 task :nuget_package => [:publish] do
     Dir.mkdir("#{OUTPUT}/nuget")
-    nuspecs = FileList["src/nancy.bootstrappers.StructureMap/*.nuspec"]
+    nuspecs = FileList["src/nancy.bootstrappers.structuremap/*.nuspec"]
     root = File.dirname(__FILE__)
 
     # Copy all project *.nuspec to nuget build folder before editing
     FileUtils.cp_r nuspecs, "#{OUTPUT}/nuget"
-    nuspecs = FileList["#{OUTPUT}/nuget/nancy.bootstrappers.StructureMap.nuspec"]
+    nuspecs = FileList["#{OUTPUT}/nuget/nancy.bootstrappers.structuremap.nuspec"]
 
     # Update the copied *.nuspec files to correct version numbers and other common values
     nuspecs.each do |nuspec|
