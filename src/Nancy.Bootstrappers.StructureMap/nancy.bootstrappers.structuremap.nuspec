@@ -11,8 +11,8 @@
     <licenseUrl>https://github.com/NancyFx/Nancy/blob/master/license.txt</licenseUrl>
     <projectUrl>http://nancyfx.org</projectUrl>
 	<dependencies>
-      <dependency id="Nancy" version="[0.6.0]" />
-	  <dependency id="structuremap" version="2.6.2" />
+      <dependency id="Nancy" />
+	  <dependency id="structuremap" />
     </dependencies> 
     <tags>Nancy StructureMap</tags>
   </metadata>
