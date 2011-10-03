@@ -4,6 +4,8 @@ using StructureMap;
 
 namespace Nancy.Bootstrappers.StructureMap
 {
+    using Nancy.ViewEngines;
+
     public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
         /// <summary>
@@ -51,6 +53,10 @@ namespace Nancy.Bootstrappers.StructureMap
         protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
         {
             applicationContainer.Configure(registry => registry.For<INancyModuleCatalog>().Singleton().Use(this));
+
+            // Adding this hear because SM doesn't use the greediest resolvable
+            // constructor, just the greediest
+            applicationContainer.Configure(registry => registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>());
         }
 
         /// <summary>
