@@ -7,6 +7,8 @@
 *.orig
 *.pidb
 *.userprefs
+*.tss
+AssemblyInfo.cs
 .DS_Store
 deploy/
 build/
@@ -15,4 +17,3 @@ build/
 [Oo]bj/
 [Rr]elease/
 _[Rr]e[Ss]harper.*/
-*.vs10x
