@@ -4,9 +4,9 @@
 
     public class DemoBootstrapper : StructureMapNancyBootstrapper
     {
-        protected override void InitialiseInternal(global::StructureMap.IContainer container)
+        protected override void ApplicationStartup(global::StructureMap.IContainer container, Bootstrapper.IPipelines pipelines)
         {
-            base.InitialiseInternal(container);
+            base.ApplicationStartup(container, pipelines);
         }
     }
 }
