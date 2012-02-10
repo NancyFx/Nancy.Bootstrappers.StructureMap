@@ -67,9 +67,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\dependencies\Nancy\src\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="DemoBootstrapper.cs" />
     <Compile Include="MainModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dependencies\Nancy\src\Nancy.Hosting.Aspnet\Nancy.Hosting.Aspnet.csproj">

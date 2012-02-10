@@ -73,6 +73,9 @@
     <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\ShouldExtensions.cs">
       <Link>ShouldExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\dependencies\Nancy\src\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="FakeStructureMapNancyBootstrapper.cs" />
     <Compile Include="StructureMapNancyBootstrapperFixture.cs" />
   </ItemGroup>
@@ -86,9 +89,7 @@
       <Name>Nancy.Bootstrappers.StructureMap</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

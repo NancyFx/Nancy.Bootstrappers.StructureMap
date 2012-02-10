@@ -6,6 +6,9 @@ namespace Nancy.Bootstrappers.StructureMap
 {
     using Nancy.ViewEngines;
 
+    /// <summary>
+    /// Nancy bootstrapper for the StructureMap container.
+    /// </summary>
     public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
         /// <summary>

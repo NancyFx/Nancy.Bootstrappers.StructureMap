@@ -22,9 +22,9 @@ namespace Nancy.BootStrappers.StructureMap.Tests
             base.ConfigureApplicationContainer(existingContainer);
         }
 
-        protected override void ConfigureRequestContainer(IContainer container)
+        protected override void ConfigureRequestContainer(IContainer container, NancyContext context)
         {
-            base.ConfigureRequestContainer(container);
+            base.ConfigureRequestContainer(container, context);
 
             RequestContainerConfigured = true;
 
