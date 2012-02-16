@@ -1,4 +1,4 @@
-﻿namespace Nancy.BootStrappers.StructureMap.Tests
+﻿namespace Nancy.Bootstrappers.StructureMap.Tests
 {
     using System.Linq;
     using Nancy.Tests;
@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public void GetEngine_ReturnsEngine()
+        public void Should_be_able_to_resolve_engine()
         {
             // Given
             // When

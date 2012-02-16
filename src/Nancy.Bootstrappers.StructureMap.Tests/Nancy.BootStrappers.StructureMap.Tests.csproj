@@ -8,8 +8,8 @@
     <ProjectGuid>{0BC2538C-BAB3-497D-898D-955A3A7A0F64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.BootStrappers.StructureMap.Tests</RootNamespace>
-    <AssemblyName>Nancy.BootStrappers.StructureMap.Tests</AssemblyName>
+    <RootNamespace>Nancy.Bootstrappers.StructureMap.Tests</RootNamespace>
+    <AssemblyName>Nancy.Bootstrappers.StructureMap.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

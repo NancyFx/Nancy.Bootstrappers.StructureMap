@@ -1,4 +1,4 @@
-namespace Nancy.BootStrappers.StructureMap.Tests
+namespace Nancy.Bootstrappers.StructureMap.Tests
 {
     using Nancy.Bootstrappers.StructureMap;
     using Nancy.Tests.Fakes;

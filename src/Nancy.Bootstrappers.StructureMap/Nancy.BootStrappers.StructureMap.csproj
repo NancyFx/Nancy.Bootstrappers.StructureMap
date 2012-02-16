@@ -8,8 +8,8 @@
     <ProjectGuid>{EA7F58FE-4BF9-4636-9B9C-E07901187237}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.BootStrappers.StructureMap</RootNamespace>
-    <AssemblyName>Nancy.BootStrappers.StructureMap</AssemblyName>
+    <RootNamespace>Nancy.Bootstrappers.StructureMap</RootNamespace>
+    <AssemblyName>Nancy.Bootstrappers.StructureMap</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
