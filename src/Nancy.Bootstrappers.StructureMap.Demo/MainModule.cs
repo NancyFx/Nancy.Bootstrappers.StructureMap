@@ -1,4 +1,4 @@
-﻿namespace Nancy.BootStrappers.StructureMap.Demo
+﻿namespace Nancy.Demo.Bootstrappers.StructureMap
 {
     public class MainModule : NancyModule
     {

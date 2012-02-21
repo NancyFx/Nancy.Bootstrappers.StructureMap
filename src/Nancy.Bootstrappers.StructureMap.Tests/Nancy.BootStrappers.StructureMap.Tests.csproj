@@ -8,8 +8,8 @@
     <ProjectGuid>{0BC2538C-BAB3-497D-898D-955A3A7A0F64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.BootStrappers.StructureMap.Tests</RootNamespace>
-    <AssemblyName>Nancy.BootStrappers.StructureMap.Tests</AssemblyName>
+    <RootNamespace>Nancy.Bootstrappers.StructureMap.Tests</RootNamespace>
+    <AssemblyName>Nancy.Bootstrappers.StructureMap.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -73,6 +73,9 @@
     <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\ShouldExtensions.cs">
       <Link>ShouldExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\dependencies\Nancy\src\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="FakeStructureMapNancyBootstrapper.cs" />
     <Compile Include="StructureMapNancyBootstrapperFixture.cs" />
   </ItemGroup>
@@ -86,9 +89,7 @@
       <Name>Nancy.Bootstrappers.StructureMap</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

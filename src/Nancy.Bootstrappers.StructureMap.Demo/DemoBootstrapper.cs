@@ -1,12 +1,8 @@
-﻿namespace Nancy.BootStrappers.StructureMap.Demo
+﻿namespace Nancy.Demo.Bootstrappers.StructureMap
 {
     using Nancy.Bootstrappers.StructureMap;
 
     public class DemoBootstrapper : StructureMapNancyBootstrapper
     {
-        protected override void ApplicationStartup(global::StructureMap.IContainer container, Bootstrapper.IPipelines pipelines)
-        {
-            base.ApplicationStartup(container, pipelines);
-        }
     }
 }
