@@ -1,20 +1,37 @@
 namespace Nancy.Bootstrappers.StructureMap.Tests
 {
+    using Bootstrapper;
     using Nancy.Bootstrappers.StructureMap;
     using Nancy.Tests.Fakes;
-
     using global::StructureMap;
 
     public class FakeStructureMapNancyBootstrapper : StructureMapNancyBootstrapper
     {
         public bool ApplicationContainerConfigured { get; set; }
+        public bool RequestContainerConfigured { get; set; }
+
+        private readonly NancyInternalConfiguration configuration;
+
+        public FakeStructureMapNancyBootstrapper()
+            : this(null)
+        {
+        }
+
+        public FakeStructureMapNancyBootstrapper(NancyInternalConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        protected override NancyInternalConfiguration InternalConfiguration
+        {
+            get { return configuration ?? base.InternalConfiguration; }
+
+        }
 
         public IContainer Container
         {
             get { return ApplicationContainer; }
         }
-
-        public bool RequestContainerConfigured { get; set; }
 
         protected override void ConfigureApplicationContainer(IContainer existingContainer)
         {

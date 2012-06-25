@@ -2,10 +2,10 @@
 {
     using System.Linq;
     using Nancy.Tests;
+    using Nancy.Tests.Fakes;
     using Xunit;
     using Nancy.Routing;
     using Nancy.Bootstrapper;
-    using Nancy.Tests.Fakes;
 
     public class StructureMapNancyBootstrapperFixture
     {
