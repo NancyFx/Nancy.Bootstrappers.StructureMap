@@ -1,6 +1,7 @@
 ﻿namespace Nancy.Bootstrappers.StructureMap
 {
     using System.Collections.Generic;
+    using Diagnostics;
     using Nancy.Bootstrapper;
     using Nancy.ViewEngines;
     using global::StructureMap;
@@ -10,6 +11,15 @@
     /// </summary>
     public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
+        /// <summary>
+        /// Gets the diagnostics for intialisation
+        /// </summary>
+        /// <returns>IDiagnostics implementation</returns>
+        protected override IDiagnostics GetDiagnostics()
+        {
+            return this.ApplicationContainer.GetInstance<IDiagnostics>();
+        }
+
         /// <summary>
         /// Gets all registered application startup tasks
         /// </summary>
