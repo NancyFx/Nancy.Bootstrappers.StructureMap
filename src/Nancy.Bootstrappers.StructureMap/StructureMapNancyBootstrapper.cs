@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Nancy.Bootstrapper;
-using StructureMap;
-
-namespace Nancy.Bootstrappers.StructureMap
+﻿namespace Nancy.Bootstrappers.StructureMap
 {
+    using System.Collections.Generic;
+    using Nancy.Bootstrapper;
     using Nancy.ViewEngines;
+    using global::StructureMap;
 
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.
@@ -12,12 +11,21 @@ namespace Nancy.Bootstrappers.StructureMap
     public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
     {
         /// <summary>
-        /// Gets all registered startup tasks
+        /// Gets all registered application startup tasks
         /// </summary>
-        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IStartup"/> instances. </returns>
-        protected override IEnumerable<IStartup> GetStartupTasks()
+        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IApplicationStartup"/> instances. </returns>
+        protected override IEnumerable<IApplicationStartup> GetApplicationStartupTasks()
         {
-            return this.ApplicationContainer.GetAllInstances<IStartup>();
+            return this.ApplicationContainer.GetAllInstances<IApplicationStartup>();
+        }
+
+        /// <summary>
+        /// Gets all registered application registration tasks
+        /// </summary>
+        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IApplicationRegistrations"/> instances.</returns>
+        protected override IEnumerable<IApplicationRegistrations> GetApplicationRegistrationTasks()
+        {
+            return this.ApplicationContainer.GetAllInstances<IApplicationRegistrations>();
         }
 
         /// <summary>
