@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap", "Nancy.Bootstrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Tests", "Nancy.Bootstrappers.StructureMap.Tests\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
