@@ -153,7 +153,7 @@
             {
                 foreach (var registrationType in moduleRegistrationTypes)
                 {
-                    registry.For(typeof(NancyModule))
+                    registry.For(typeof(INancyModule))
                         .LifecycleIs(InstanceScope.Unique)
                         .Use(registrationType.ModuleType)
                         .Named(registrationType.ModuleKey);
@@ -166,9 +166,9 @@
         /// </summary>
         /// <param name="container">Container to use</param>
         /// <returns>Collection of NancyModule instances</returns>
-        protected override IEnumerable<NancyModule> GetAllModules(IContainer container)
+        protected override IEnumerable<INancyModule> GetAllModules(IContainer container)
         {
-            return container.GetAllInstances<NancyModule>();
+            return container.GetAllInstances<INancyModule>();
         }
 
         /// <summary>
@@ -177,9 +177,9 @@
         /// <param name="container">Container to use</param>
         /// <param name="moduleKey">Module key of the module</param>
         /// <returns>NancyModule instance</returns>
-        protected override NancyModule GetModuleByKey(IContainer container, string moduleKey)
+        protected override INancyModule GetModuleByKey(IContainer container, string moduleKey)
         {
-            return container.TryGetInstance<NancyModule>(moduleKey);
+            return container.TryGetInstance<INancyModule>(moduleKey);
         }
     }
 }
