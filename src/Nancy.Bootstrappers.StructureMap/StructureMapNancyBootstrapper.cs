@@ -1,5 +1,6 @@
 ﻿namespace Nancy.Bootstrappers.StructureMap
 {
+    using System;
     using System.Collections.Generic;
     using Diagnostics;
     using Nancy.Bootstrapper;
@@ -14,7 +15,7 @@
         /// <summary>
         /// Gets the diagnostics for intialisation
         /// </summary>
-        /// <returns>IDiagnostics implementation</returns>
+        /// <returns>An <see cref="IDiagnostics"/> implementation</returns>
         protected override IDiagnostics GetDiagnostics()
         {
             return this.ApplicationContainer.GetInstance<IDiagnostics>();
@@ -39,21 +40,12 @@
         }
 
         /// <summary>
-        /// Resolve INancyEngine
+        /// Resolve <see cref="INancyEngine"/>
         /// </summary>
-        /// <returns>INancyEngine implementation</returns>
+        /// <returns><see cref="INancyEngine"/> implementation</returns>
         protected override INancyEngine GetEngineInternal()
         {
             return this.ApplicationContainer.GetInstance<INancyEngine>();
-        }
-
-        /// <summary>
-        /// Get the moduleKey generator
-        /// </summary>
-        /// <returns>IModuleKeyGenerator instance</returns>
-        protected override IModuleKeyGenerator GetModuleKeyGenerator()
-        {
-            return this.ApplicationContainer.GetInstance<IModuleKeyGenerator>();
         }
 
         /// <summary>
@@ -68,7 +60,7 @@
         /// <summary>
         /// Register the bootstrapper's implemented types into the container.
         /// This is necessary so a user can pass in a populated container but not have
-        /// to take the responsibility of registering things like INancyModuleCatalog manually.
+        /// to take the responsibility of registering things like <see cref="INancyModuleCatalog"/> manually.
         /// </summary>
         /// <param name="applicationContainer">Application container to register into</param>
         protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
@@ -146,17 +138,14 @@
         /// Register the given module types into the request container
         /// </summary>
         /// <param name="container">Container to register into</param>
-        /// <param name="moduleRegistrationTypes">NancyModule types</param>
+        /// <param name="moduleRegistrationTypes"><see cref="INancyModule"/> types</param>
         protected override void RegisterRequestContainerModules(IContainer container, IEnumerable<ModuleRegistration> moduleRegistrationTypes)
         {
             container.Configure(registry =>
             {
                 foreach (var registrationType in moduleRegistrationTypes)
                 {
-                    registry.For(typeof(INancyModule))
-                        .LifecycleIs(InstanceScope.Unique)
-                        .Use(registrationType.ModuleType)
-                        .Named(registrationType.ModuleKey);
+                    registry.For(typeof(INancyModule)).LifecycleIs(InstanceScope.Unique).Use(registrationType.ModuleType);
                 }
             });
         }
@@ -165,21 +154,26 @@
         /// Retrieve all module instances from the container
         /// </summary>
         /// <param name="container">Container to use</param>
-        /// <returns>Collection of NancyModule instances</returns>
+        /// <returns>Collection of <see cref="INancyModule"/> instances</returns>
         protected override IEnumerable<INancyModule> GetAllModules(IContainer container)
         {
             return container.GetAllInstances<INancyModule>();
         }
 
         /// <summary>
-        /// Retreive a specific module instance from the container by its key
+        /// Retreive a specific module instance from the container
         /// </summary>
         /// <param name="container">Container to use</param>
-        /// <param name="moduleKey">Module key of the module</param>
-        /// <returns>NancyModule instance</returns>
-        protected override INancyModule GetModuleByKey(IContainer container, string moduleKey)
+        /// <param name="moduleType">Type of the module</param>
+        /// <returns>A <see cref="INancyModule"/> instance</returns>
+        protected override INancyModule GetModule(IContainer container, Type moduleType)
         {
-            return container.TryGetInstance<INancyModule>(moduleKey);
+            container.Configure(registry =>
+            {
+                registry.For(typeof(INancyModule)).LifecycleIs(InstanceScope.Unique).Use(moduleType);
+            });
+
+            return container.TryGetInstance<INancyModule>();
         }
     }
 }
