@@ -4,7 +4,7 @@ A [bootstrapper](https://github.com/NancyFx/Nancy/wiki/Bootstrapper) implementat
 
 When Nancy detects that the `StructureMapNancyBootstrapper` type is available in the AppDomain of your application, it will assume you want to use it, rather than the default one.
 
-The easiest way to get the latest version of `StructureMapNancyBootstrapper` into your application is to install the `Nancy.Boostrappers.StructureMap` nuget.
+The easiest way to get the latest version of `StructureMapNancyBootstrapper` into your application is to install the `Nancy.Bootstrappers.StructureMap` nuget.
 
 ### Customizing
 
