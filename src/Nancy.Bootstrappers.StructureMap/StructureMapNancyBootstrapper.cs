@@ -70,6 +70,11 @@
             // Adding this hear because SM doesn't use the greediest resolvable
             // constructor, just the greediest
             applicationContainer.Configure(registry => registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>());
+
+            // DefaultRouteCacheProvider doesn't have a parameterless constructor.
+            // It has a Func<IRouteCache> parameter, which StructureMap doesn't know how to handle
+            var routeCacheFactory = new Func<IRouteCache>(ObjectFactory.GetInstance<IRouteCache>);
+            applicationContainer.Configure(registry => registry.For<Func<IRouteCache>>().Use(routeCacheFactory));
         }
 
         /// <summary>
