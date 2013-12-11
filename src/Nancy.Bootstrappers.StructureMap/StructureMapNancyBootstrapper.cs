@@ -6,6 +6,7 @@
     using Nancy.Bootstrapper;
     using Nancy.ViewEngines;
     using global::StructureMap;
+    using Routing;
 
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.
