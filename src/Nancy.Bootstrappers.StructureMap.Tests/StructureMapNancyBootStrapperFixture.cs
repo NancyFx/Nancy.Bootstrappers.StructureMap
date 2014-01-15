@@ -102,5 +102,16 @@
             result2.FooDependency.ShouldNotBeNull();
             result.FooDependency.ShouldNotBeSameAs(result2.FooDependency);
         }
+
+        [Fact]
+        public void Should_be_Disposable()
+        {
+            this.bootstrapper.Container.TryGetInstance<INancyModuleCatalog>().ShouldNotBeNull();
+
+            this.bootstrapper.Dispose();
+
+            // This should now be no longer retrievable.
+            this.bootstrapper.Container.TryGetInstance<INancyModuleCatalog>().ShouldBeNull();
+        }
     }
 }

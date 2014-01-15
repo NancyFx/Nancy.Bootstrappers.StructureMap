@@ -11,7 +11,7 @@
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.
     /// </summary>
-    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
+    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>, IDisposable
     {
         /// <summary>
         /// Gets the diagnostics for intialisation
@@ -180,6 +180,16 @@
             });
 
             return container.TryGetInstance<INancyModule>();
+        }
+
+        private bool disposing = false;
+        public new void Dispose()
+        {
+            if (disposing)
+                return;
+
+            disposing = true;
+            base.Dispose();
         }
     }
 }
