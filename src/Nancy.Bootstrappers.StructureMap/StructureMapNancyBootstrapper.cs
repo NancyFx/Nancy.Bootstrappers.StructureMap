@@ -16,7 +16,7 @@
         private bool isDisposing = false;
 
         /// <summary>
-        /// Gets the diagnostics for intialisation
+        /// Gets the diagnostics for initialisation
         /// </summary>
         /// <returns>An <see cref="IDiagnostics"/> implementation</returns>
         protected override IDiagnostics GetDiagnostics()
