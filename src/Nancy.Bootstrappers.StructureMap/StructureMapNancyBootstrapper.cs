@@ -13,6 +13,8 @@
     /// </summary>
     public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>, IDisposable
     {
+        private bool isDisposing = false;
+
         /// <summary>
         /// Gets the diagnostics for intialisation
         /// </summary>
@@ -182,13 +184,14 @@
             return container.TryGetInstance<INancyModule>();
         }
 
-        private bool disposing = false;
         public new void Dispose()
         {
-            if (disposing)
+            if (this.isDisposing)
+            {
                 return;
+            }
 
-            disposing = true;
+            this.isDisposing = true;
             base.Dispose();
         }
     }
