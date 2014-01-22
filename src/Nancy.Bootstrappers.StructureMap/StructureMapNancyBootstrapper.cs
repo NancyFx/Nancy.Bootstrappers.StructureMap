@@ -11,10 +11,12 @@
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.
     /// </summary>
-    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>
+    public abstract class StructureMapNancyBootstrapper : NancyBootstrapperWithRequestContainerBase<IContainer>, IDisposable
     {
+        private bool isDisposing = false;
+
         /// <summary>
-        /// Gets the diagnostics for intialisation
+        /// Gets the diagnostics for initialisation
         /// </summary>
         /// <returns>An <see cref="IDiagnostics"/> implementation</returns>
         protected override IDiagnostics GetDiagnostics()
@@ -180,6 +182,17 @@
             });
 
             return container.TryGetInstance<INancyModule>();
+        }
+
+        public new void Dispose()
+        {
+            if (this.isDisposing)
+            {
+                return;
+            }
+
+            this.isDisposing = true;
+            base.Dispose();
         }
     }
 }

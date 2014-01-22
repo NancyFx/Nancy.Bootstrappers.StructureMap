@@ -1,5 +1,6 @@
 ﻿namespace Nancy.Bootstrappers.StructureMap.Tests
 {
+    using System;
     using System.Linq;
     using Nancy.Tests;
     using Nancy.Tests.Fakes;
@@ -7,7 +8,7 @@
     using Nancy.Routing;
     using Nancy.Bootstrapper;
 
-    public class StructureMapNancyBootstrapperFixture
+    public class StructureMapNancyBootstrapperFixture : IDisposable
     {
         private readonly FakeStructureMapNancyBootstrapper bootstrapper;
 
@@ -101,6 +102,11 @@
             result.FooDependency.ShouldNotBeNull();
             result2.FooDependency.ShouldNotBeNull();
             result.FooDependency.ShouldNotBeSameAs(result2.FooDependency);
+        }
+
+        public void Dispose()
+        {
+            this.bootstrapper.Dispose();
         }
     }
 }
