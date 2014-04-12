@@ -50,8 +50,6 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
                 registry.For<IFoo>().Singleton().Use<Foo>();
                 registry.For<IDependency>().Singleton().Use<Dependency>();
             });
-
-            var test = container.GetInstance<IFoo>();
         }
     }
 }
