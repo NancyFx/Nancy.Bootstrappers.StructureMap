@@ -44,11 +44,11 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
             base.ConfigureRequestContainer(container, context);
 
             RequestContainerConfigured = true;
-
+            
             container.Configure(registry =>
             {
-                registry.For<IFoo>().Singleton().Use<Foo>();
-                registry.For<IDependency>().Singleton().Use<Dependency>();
+                registry.For<IFoo>().Use<Foo>();
+                registry.For<IDependency>().Use<Dependency>();
             });
         }
     }

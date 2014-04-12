@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Diagnostics;
 
+    using global::StructureMap.Configuration.DSL;
     using global::StructureMap.Pipeline;
 
     using Nancy.Bootstrapper;
@@ -94,21 +95,11 @@
                 {
                     foreach (var typeRegistration in typeRegistrations)
                     {
-                        switch (typeRegistration.Lifetime)
-                        {
-                            case Lifetime.Transient:
-                                registry.For(typeRegistration.RegistrationType).LifecycleIs(Lifecycles.Unique).Use(
-                                    typeRegistration.ImplementationType);
-                                break;
-                            case Lifetime.Singleton:
-                                registry.For(typeRegistration.RegistrationType).LifecycleIs(Lifecycles.Singleton).Use(
-                                    typeRegistration.ImplementationType);
-                                break;
-                            case Lifetime.PerRequest:
-                                throw new InvalidOperationException("Unable to directly register a per request lifetime.");
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                        RegisterType(
+                            typeRegistration.RegistrationType, 
+                            typeRegistration.ImplementationType, 
+                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : typeRegistration.Lifetime,
+                            registry);
                     }
                 });
         }
@@ -127,20 +118,11 @@
                 {
                     foreach (var implementationType in collectionTypeRegistration.ImplementationTypes)
                     {
-                        switch (collectionTypeRegistration.Lifetime)
-                        {
-                            case Lifetime.Transient:
-                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(Lifecycles.Unique).Use(implementationType);
-                                break;
-                            case Lifetime.Singleton:
-                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(Lifecycles.Singleton).Use(implementationType);
-                                break;
-                            case Lifetime.PerRequest:
-                                throw new InvalidOperationException("Unable to directly register a per request lifetime.");
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                        RegisterType(
+                            collectionTypeRegistration.RegistrationType,
+                            implementationType,
+                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : collectionTypeRegistration.Lifetime,
+                            registry);
                     }
                 }
             });
@@ -222,6 +204,29 @@
 
             this.isDisposing = true;
             base.Dispose();
+        }
+
+        private static void RegisterType(Type registrationType, Type implementationType, Lifetime lifetime, IProfileRegistry registry)
+        {
+            switch (lifetime)
+            {
+                case Lifetime.Transient:
+                    registry.For(registrationType)
+                        .LifecycleIs(Lifecycles.Unique)
+                        .Use(implementationType);
+                    break;
+                case Lifetime.Singleton:
+                    registry.For(registrationType)
+                        .LifecycleIs(Lifecycles.Singleton)
+                        .Use(implementationType);
+                    break;
+                case Lifetime.PerRequest:
+                    registry.For(registrationType)
+                        .Use(implementationType);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
