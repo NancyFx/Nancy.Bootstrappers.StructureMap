@@ -36,10 +36,10 @@
         /// <summary>
         /// Gets all registered application registration tasks
         /// </summary>
-        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IApplicationRegistrations"/> instances.</returns>
-        protected override IEnumerable<IApplicationRegistrations> GetApplicationRegistrationTasks()
+        /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IRegistrations"/> instances.</returns>
+        protected override IEnumerable<IRegistrations> GetRegistrationTasks()
         {
-            return this.ApplicationContainer.GetAllInstances<IApplicationRegistrations>();
+            return this.ApplicationContainer.GetAllInstances<IRegistrations>();
         }
 
         /// <summary>
@@ -91,8 +91,21 @@
                 {
                     foreach (var typeRegistration in typeRegistrations)
                     {
-                        registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(
-                            typeRegistration.ImplementationType);
+                        switch (typeRegistration.Lifetime)
+                        {
+                            case Lifetime.Transient:
+                                registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.PerRequest).Use(
+                                    typeRegistration.ImplementationType);
+                                break;
+                            case Lifetime.Singleton:
+                                registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(
+                                    typeRegistration.ImplementationType);
+                                break;
+                            case Lifetime.PerRequest:
+                                throw new InvalidOperationException("Unable to directly register a per request lifetime.");
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     }
                 });
         }
@@ -111,7 +124,20 @@
                 {
                     foreach (var implementationType in collectionTypeRegistration.ImplementationTypes)
                     {
-                        registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(implementationType);
+                        switch (collectionTypeRegistration.Lifetime)
+                        {
+                            case Lifetime.Transient:
+                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.PerRequest).Use(implementationType);
+                                break;
+                            case Lifetime.Singleton:
+                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(implementationType);
+                                break;
+                            case Lifetime.PerRequest:
+                                throw new InvalidOperationException("Unable to directly register a per request lifetime.");
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     }
                 }
             });
