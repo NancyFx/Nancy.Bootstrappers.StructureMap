@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
     using Diagnostics;
+
+    using global::StructureMap.Pipeline;
+
     using Nancy.Bootstrapper;
     using Nancy.ViewEngines;
     using global::StructureMap;
@@ -94,11 +97,11 @@
                         switch (typeRegistration.Lifetime)
                         {
                             case Lifetime.Transient:
-                                registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.PerRequest).Use(
+                                registry.For(typeRegistration.RegistrationType).LifecycleIs(Lifecycles.Unique).Use(
                                     typeRegistration.ImplementationType);
                                 break;
                             case Lifetime.Singleton:
-                                registry.For(typeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(
+                                registry.For(typeRegistration.RegistrationType).LifecycleIs(Lifecycles.Singleton).Use(
                                     typeRegistration.ImplementationType);
                                 break;
                             case Lifetime.PerRequest:
@@ -127,10 +130,10 @@
                         switch (collectionTypeRegistration.Lifetime)
                         {
                             case Lifetime.Transient:
-                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.PerRequest).Use(implementationType);
+                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(Lifecycles.Unique).Use(implementationType);
                                 break;
                             case Lifetime.Singleton:
-                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(implementationType);
+                                registry.For(collectionTypeRegistration.RegistrationType).LifecycleIs(Lifecycles.Singleton).Use(implementationType);
                                 break;
                             case Lifetime.PerRequest:
                                 throw new InvalidOperationException("Unable to directly register a per request lifetime.");
@@ -154,7 +157,7 @@
             {
                 foreach (var instanceRegistration in instanceRegistrations)
                 {
-                    registry.For(instanceRegistration.RegistrationType).LifecycleIs(InstanceScope.Singleton).Use(instanceRegistration.Implementation);
+                    registry.For(instanceRegistration.RegistrationType).LifecycleIs(Lifecycles.Singleton).Use(instanceRegistration.Implementation);
                 }
             });
         }
@@ -179,7 +182,7 @@
             {
                 foreach (var registrationType in moduleRegistrationTypes)
                 {
-                    registry.For(typeof(INancyModule)).LifecycleIs(InstanceScope.Unique).Use(registrationType.ModuleType);
+                    registry.For(typeof(INancyModule)).LifecycleIs(Lifecycles.Unique).Use(registrationType.ModuleType);
                 }
             });
         }
@@ -204,7 +207,7 @@
         {
             container.Configure(registry =>
             {
-                registry.For(typeof(INancyModule)).LifecycleIs(InstanceScope.Unique).Use(moduleType);
+                registry.For(typeof(INancyModule)).LifecycleIs(Lifecycles.Unique).Use(moduleType);
             });
 
             return container.TryGetInstance<INancyModule>();
