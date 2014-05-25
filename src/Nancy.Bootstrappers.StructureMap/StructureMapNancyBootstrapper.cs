@@ -38,6 +38,28 @@
         }
 
         /// <summary>
+        /// Gets all registered request startup tasks
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> instance containing <see cref="IRequestStartup"/> instances.</returns>
+        protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,Type[] requestStartupTypes)
+        {
+            container.Configure(
+                registry =>
+                {
+                    foreach (var requestStartupType in requestStartupTypes)
+                    {
+                        RegisterType(
+                            typeof(IRequestStartup),
+                            requestStartupType,
+                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : Lifetime.Singleton,
+                            registry);
+                    }
+                });
+
+            return container.GetAllInstances<IRequestStartup>();
+        }
+
+        /// <summary>
         /// Gets all registered application registration tasks
         /// </summary>
         /// <returns>An <see cref="System.Collections.Generic.IEnumerable{T}"/> instance containing <see cref="IRegistrations"/> instances.</returns>
@@ -96,8 +118,8 @@
                     foreach (var typeRegistration in typeRegistrations)
                     {
                         RegisterType(
-                            typeRegistration.RegistrationType, 
-                            typeRegistration.ImplementationType, 
+                            typeRegistration.RegistrationType,
+                            typeRegistration.ImplementationType,
                             container.Role == ContainerRole.Nested ? Lifetime.PerRequest : typeRegistration.Lifetime,
                             registry);
                     }
