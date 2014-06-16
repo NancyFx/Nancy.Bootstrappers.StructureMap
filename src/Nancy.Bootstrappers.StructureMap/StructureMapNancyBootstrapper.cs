@@ -101,8 +101,6 @@
                 // Adding this here because SM doesn't use the greediest resolvable
                 // constructor, just the greediest constructor period.
                 registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>();
-
-                registry.For<IRouteCacheProvider>().Use<DefaultRouteCacheProvider>();
             });
         }
 
