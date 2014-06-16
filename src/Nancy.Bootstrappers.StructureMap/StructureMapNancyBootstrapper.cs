@@ -247,7 +247,7 @@
                         .Use(implementationType);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("lifetime", lifetime, "Unknonw Lifetime: " + lifetime);
             }
         }
     }
