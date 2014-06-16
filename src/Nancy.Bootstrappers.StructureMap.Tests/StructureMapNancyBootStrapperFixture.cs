@@ -104,6 +104,21 @@
             result.FooDependency.ShouldNotBeSameAs(result2.FooDependency);
         }
 
+        [Fact]
+        public void Should_resolve_module_with_dependency_on_RouteCacheFactory()
+        {
+            // Given
+            this.bootstrapper.GetEngine();
+            var context = new NancyContext();
+
+            // When
+            var result = this.bootstrapper.GetModule(typeof(FakeNancyModuleWithRouteCacheProviderDependency), context) as FakeNancyModuleWithRouteCacheProviderDependency;
+
+            // Then
+            result.RouteCacheProvider.ShouldNotBeNull();
+            result.RouteCacheProvider.ShouldBeOfType(typeof(DefaultRouteCacheProvider));
+        }
+
         public void Dispose()
         {
             this.bootstrapper.Dispose();
