@@ -102,10 +102,7 @@
                 // constructor, just the greediest
                 registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>();
 
-                // DefaultRouteCacheProvider doesn't have a parameterless constructor.
-                // It has a Func<IRouteCache> parameter, which StructureMap doesn't know how to handle
-                var routeCacheFactory = new Func<IRouteCache>(ObjectFactory.GetInstance<IRouteCache>);
-                registry.For<Func<IRouteCache>>().Use(routeCacheFactory);
+                registry.For<IRouteCacheProvider>().Use<DefaultRouteCacheProvider>();
             });
         }
 
