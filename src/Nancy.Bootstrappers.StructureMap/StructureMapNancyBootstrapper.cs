@@ -98,8 +98,8 @@
             {
                 registry.For<INancyModuleCatalog>().Singleton().Use(this);
 
-                // Adding this hear because SM doesn't use the greediest resolvable
-                // constructor, just the greediest
+                // Adding this here because SM doesn't use the greediest resolvable
+                // constructor, just the greediest constructor period.
                 registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>();
 
                 registry.For<IRouteCacheProvider>().Use<DefaultRouteCacheProvider>();
