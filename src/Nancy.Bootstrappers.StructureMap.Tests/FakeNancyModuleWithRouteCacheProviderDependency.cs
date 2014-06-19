@@ -1,7 +1,7 @@
-﻿using Nancy.Routing;
-
-namespace Nancy.Bootstrappers.StructureMap.Tests
+﻿namespace Nancy.Bootstrappers.StructureMap.Tests
 {
+    using Nancy.Routing;
+
     public class FakeNancyModuleWithRouteCacheProviderDependency : NancyModule
     {
         public IRouteCacheProvider RouteCacheProvider { get; private set; }
