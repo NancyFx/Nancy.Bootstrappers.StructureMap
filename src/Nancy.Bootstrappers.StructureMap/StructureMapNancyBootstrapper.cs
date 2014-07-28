@@ -102,7 +102,7 @@
 
             // DefaultRouteCacheProvider doesn't have a parameterless constructor.
             // It has a Func<IRouteCache> parameter, which StructureMap doesn't know how to handle
-            var routeCacheFactory = new Func<IRouteCache>(ObjectFactory.GetInstance<IRouteCache>);
+            var routeCacheFactory = new Func<IRouteCache>(this.ApplicationContainer.GetInstance<IRouteCache>);
             applicationContainer.Configure(registry => registry.For<Func<IRouteCache>>().Use(routeCacheFactory));
         }
 
