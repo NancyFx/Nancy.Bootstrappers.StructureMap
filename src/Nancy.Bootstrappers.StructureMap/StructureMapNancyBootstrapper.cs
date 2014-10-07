@@ -1,4 +1,4 @@
-﻿namespace Nancy.Bootstrappers.StructureMap
+namespace Nancy.Bootstrappers.StructureMap
 {
     using System;
     using System.Collections.Generic;
@@ -43,19 +43,6 @@
         /// <returns>An <see cref="IEnumerable{T}"/> instance containing <see cref="IRequestStartup"/> instances.</returns>
         protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,Type[] requestStartupTypes)
         {
-            container.Configure(
-                registry =>
-                {
-                    foreach (var requestStartupType in requestStartupTypes)
-                    {
-                        RegisterType(
-                            typeof(IRequestStartup),
-                            requestStartupType,
-                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : Lifetime.Singleton,
-                            registry);
-                    }
-                });
-
             return container.GetAllInstances<IRequestStartup>();
         }
 
@@ -97,9 +84,6 @@
             applicationContainer.Configure(registry =>
             {
                 registry.For<INancyModuleCatalog>().Singleton().Use(this);
-
-                // Adding this here because SM doesn't use the greediest resolvable
-                // constructor, just the greediest constructor period.
                 registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>();
             });
         }
@@ -207,12 +191,7 @@
         /// <returns>A <see cref="INancyModule"/> instance</returns>
         protected override INancyModule GetModule(IContainer container, Type moduleType)
         {
-            container.Configure(registry =>
-            {
-                registry.For(typeof(INancyModule)).LifecycleIs(Lifecycles.Unique).Use(moduleType);
-            });
-
-            return container.TryGetInstance<INancyModule>();
+             return (INancyModule)container.GetInstance(moduleType);
         }
 
         public new void Dispose()
