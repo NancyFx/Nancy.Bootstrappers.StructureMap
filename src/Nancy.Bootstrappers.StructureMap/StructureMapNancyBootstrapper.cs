@@ -1,4 +1,4 @@
-﻿namespace Nancy.Bootstrappers.StructureMap
+namespace Nancy.Bootstrappers.StructureMap
 {
     using System;
     using System.Collections.Generic;
@@ -43,19 +43,6 @@
         /// <returns>An <see cref="IEnumerable{T}"/> instance containing <see cref="IRequestStartup"/> instances.</returns>
         protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,Type[] requestStartupTypes)
         {
-            container.Configure(
-                registry =>
-                {
-                    foreach (var requestStartupType in requestStartupTypes)
-                    {
-                        RegisterType(
-                            typeof(IRequestStartup),
-                            requestStartupType,
-                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : Lifetime.Singleton,
-                            registry);
-                    }
-                });
-
             return container.GetAllInstances<IRequestStartup>();
         }
 
@@ -94,16 +81,11 @@
         /// <param name="applicationContainer">Application container to register into</param>
         protected override void RegisterBootstrapperTypes(IContainer applicationContainer)
         {
-            applicationContainer.Configure(registry => registry.For<INancyModuleCatalog>().Singleton().Use(this));
-
-            // Adding this hear because SM doesn't use the greediest resolvable
-            // constructor, just the greediest
-            applicationContainer.Configure(registry => registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>());
-
-            // DefaultRouteCacheProvider doesn't have a parameterless constructor.
-            // It has a Func<IRouteCache> parameter, which StructureMap doesn't know how to handle
-            var routeCacheFactory = new Func<IRouteCache>(this.ApplicationContainer.GetInstance<IRouteCache>);
-            applicationContainer.Configure(registry => registry.For<Func<IRouteCache>>().Use(routeCacheFactory));
+            applicationContainer.Configure(registry =>
+            {
+                registry.For<INancyModuleCatalog>().Singleton().Use(this);
+                registry.For<IFileSystemReader>().Singleton().Use<DefaultFileSystemReader>();
+            });
         }
 
         /// <summary>
@@ -209,12 +191,7 @@
         /// <returns>A <see cref="INancyModule"/> instance</returns>
         protected override INancyModule GetModule(IContainer container, Type moduleType)
         {
-            container.Configure(registry =>
-            {
-                registry.For(typeof(INancyModule)).LifecycleIs(Lifecycles.Unique).Use(moduleType);
-            });
-
-            return container.TryGetInstance<INancyModule>();
+             return (INancyModule)container.GetInstance(moduleType);
         }
 
         public new void Dispose()
@@ -247,7 +224,7 @@
                         .Use(implementationType);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("lifetime", lifetime, String.Format("Unknown Lifetime: {0}.", lifetime));
             }
         }
     }
