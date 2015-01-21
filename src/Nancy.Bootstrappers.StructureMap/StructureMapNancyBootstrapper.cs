@@ -151,8 +151,9 @@ namespace Nancy.Bootstrappers.StructureMap
         /// <summary>
         /// Creates a per request child/nested container
         /// </summary>
+        /// <param name="context">The context</param>
         /// <returns>Request container instance</returns>
-        protected override IContainer CreateRequestContainer()
+        protected override IContainer CreateRequestContainer(NancyContext context)
         {
             return this.ApplicationContainer.GetNestedContainer();
         }
