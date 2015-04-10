@@ -2936,6 +2936,11 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="T:StructureMap.Pipeline.ObjectLifecycle">
+            <summary>
+            Used internally to mark objects that are injected directly into the container
+            </summary>
+        </member>
         <member name="T:StructureMap.Pipeline.SmartInstance`2">
             <summary>
                 Instance that builds objects with by calling constructor functions and using setter properties
