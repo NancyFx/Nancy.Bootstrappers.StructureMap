@@ -14,8 +14,8 @@
     <projectUrl>http://nancyfx.org</projectUrl>
     <dependencies>
       <dependency id="Nancy" />
-      <dependency id="structuremap" version="3.0.1" />
-    </dependencies> 
+      <dependency id="structuremap" version="3.1.4.143" />
+    </dependencies>
     <tags>Nancy StructureMap</tags>
   </metadata>
   <files>
