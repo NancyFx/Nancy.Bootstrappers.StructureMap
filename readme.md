@@ -11,6 +11,11 @@ The easiest way to get the latest version of `StructureMapNancyBootstrapper` int
 By inheriting from `StructureMapNancyBootstrapper` you will gain access to the `IContainer` of the application and request containers and can perform what ever reqistations that your application requires.
 
 ```c#
+using Nancy;
+using Nancy.Bootstrapper;
+using Nancy.Bootstrappers.StructureMap;
+using StructureMap;
+
 public class Bootstrapper : StructureMapNancyBootstrapper
 {
     protected override void ApplicationStartup(IContainer container, IPipelines pipelines)
