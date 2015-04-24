@@ -1,4 +1,6 @@
-﻿namespace Nancy.Bootstrappers.StructureMap.Tests
+﻿using StructureMap;
+
+namespace Nancy.Bootstrappers.StructureMap.Tests
 {
     using System;
     using System.Linq;
@@ -117,6 +119,24 @@
             // Then
             result.RouteCacheProvider.ShouldNotBeNull();
             result.RouteCacheProvider.ShouldBeOfType(typeof(DefaultRouteCacheProvider));
+        }
+
+        [Fact]
+        public void Should_resolve_IRequestStartup_types()
+        {
+            //Given
+            var nancyEngine = this.bootstrapper.GetEngine();
+            var context = new NancyContext();
+
+            //When
+            nancyEngine.RequestPipelinesFactory(context);
+            var nestedContainer = context.Items.ElementAt(0).Value as Container;
+
+            //Then
+            nestedContainer.ShouldNotBeNull();
+            var registeredRequestStartups = nestedContainer.GetAllInstances<IRequestStartup>().ToArray();
+            registeredRequestStartups.Length.ShouldEqual(1);
+            registeredRequestStartups[0].ShouldBeOfType<FakeNancyRequestStartup>();
         }
 
         public void Dispose()

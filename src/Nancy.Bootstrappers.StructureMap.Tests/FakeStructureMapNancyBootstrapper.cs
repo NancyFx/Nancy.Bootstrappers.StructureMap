@@ -52,4 +52,10 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
             });
         }
     }
+
+    public class FakeNancyRequestStartup : IRequestStartup
+    {
+        public void Initialize(IPipelines pipelines, NancyContext context)
+        {}
+    }
 }
