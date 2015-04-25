@@ -1,6 +1,4 @@
-﻿using StructureMap;
-
-namespace Nancy.Bootstrappers.StructureMap.Tests
+﻿namespace Nancy.Bootstrappers.StructureMap.Tests
 {
     using System;
     using System.Linq;
@@ -9,6 +7,7 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
     using Xunit;
     using Nancy.Routing;
     using Nancy.Bootstrapper;
+    using global::StructureMap;
 
     public class StructureMapNancyBootstrapperFixture : IDisposable
     {
