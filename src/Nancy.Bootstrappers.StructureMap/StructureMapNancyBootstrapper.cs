@@ -41,8 +41,21 @@ namespace Nancy.Bootstrappers.StructureMap
         /// Gets all registered request startup tasks
         /// </summary>
         /// <returns>An <see cref="IEnumerable{T}"/> instance containing <see cref="IRequestStartup"/> instances.</returns>
-        protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container,Type[] requestStartupTypes)
+        protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container, Type[] requestStartupTypes)
         {
+            container.Configure(
+                registry =>
+                {
+                    foreach (var requestStartupType in requestStartupTypes)
+                    {
+                        RegisterType(
+                            typeof(IRequestStartup),
+                            requestStartupType,
+                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : Lifetime.Singleton,
+                            registry);
+                    }
+                }
+            );
             return container.GetAllInstances<IRequestStartup>();
         }
 
