@@ -2,6 +2,7 @@ namespace Nancy.Bootstrappers.StructureMap
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Diagnostics;
 
     using global::StructureMap.Configuration.DSL;
@@ -43,20 +44,7 @@ namespace Nancy.Bootstrappers.StructureMap
         /// <returns>An <see cref="IEnumerable{T}"/> instance containing <see cref="IRequestStartup"/> instances.</returns>
         protected override IEnumerable<IRequestStartup> RegisterAndGetRequestStartupTasks(IContainer container, Type[] requestStartupTypes)
         {
-            container.Configure(
-                registry =>
-                {
-                    foreach (var requestStartupType in requestStartupTypes)
-                    {
-                        RegisterType(
-                            typeof(IRequestStartup),
-                            requestStartupType,
-                            container.Role == ContainerRole.Nested ? Lifetime.PerRequest : Lifetime.Singleton,
-                            registry);
-                    }
-                }
-            );
-            return container.GetAllInstances<IRequestStartup>();
+            return requestStartupTypes.Select(container.GetInstance).Cast<IRequestStartup>().ToArray();
         }
 
         /// <summary>

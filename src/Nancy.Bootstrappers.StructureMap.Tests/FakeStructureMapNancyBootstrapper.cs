@@ -56,6 +56,9 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
     public class FakeNancyRequestStartup : IRequestStartup
     {
         public void Initialize(IPipelines pipelines, NancyContext context)
-        {}
+        {
+            // Observable side-effect of the execution of this IRequestStartup.
+            context.ViewBag.RequestStartupHasRun = true;
+        }
     }
 }
