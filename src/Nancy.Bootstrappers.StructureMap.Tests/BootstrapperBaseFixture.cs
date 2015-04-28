@@ -7,16 +7,16 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
 
     public class BootstrapperBaseFixture : BootstrapperBaseFixtureBase<IContainer>
     {
-        private readonly StructureMapNancyBootstrapper boostrapper;
+        private readonly StructureMapNancyBootstrapper bootstrapper;
 
         public BootstrapperBaseFixture()
         {
-            this.boostrapper = new FakeStructureMapNancyBootstrapper(this.Configuration);
+            this.bootstrapper = new FakeStructureMapNancyBootstrapper(this.Configuration);
         }
 
         protected override NancyBootstrapperBase<IContainer> Bootstrapper
         {
-            get { return this.boostrapper; }
+            get { return this.bootstrapper; }
         }
     }
 }
