@@ -3,15 +3,14 @@ namespace Nancy.Bootstrappers.StructureMap
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Diagnostics;
 
+    using global::StructureMap;
     using global::StructureMap.Configuration.DSL;
     using global::StructureMap.Pipeline;
 
+    using Nancy.Diagnostics;
     using Nancy.Bootstrapper;
     using Nancy.ViewEngines;
-    using global::StructureMap;
-    using Routing;
 
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.

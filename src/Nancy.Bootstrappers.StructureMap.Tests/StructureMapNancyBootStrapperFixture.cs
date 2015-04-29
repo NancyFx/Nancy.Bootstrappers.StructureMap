@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
+
     using Nancy.Tests;
     using Nancy.Tests.Fakes;
-    using Xunit;
     using Nancy.Routing;
-    using Nancy.Bootstrapper;
-    using global::StructureMap;
+
+    using Xunit;
 
     public class StructureMapNancyBootstrapperFixture : IDisposable
     {

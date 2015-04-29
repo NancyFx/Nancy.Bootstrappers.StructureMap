@@ -1,9 +1,11 @@
 namespace Nancy.Bootstrappers.StructureMap.Tests
 {
-    using Bootstrapper;
-    using Nancy.Bootstrappers.StructureMap;
-    using Nancy.Tests.Fakes;
     using global::StructureMap;
+
+    using Nancy.Bootstrapper;
+    using Nancy.Bootstrappers.StructureMap;
+
+    using Nancy.Tests.Fakes;
 
     public class FakeStructureMapNancyBootstrapper : StructureMapNancyBootstrapper
     {

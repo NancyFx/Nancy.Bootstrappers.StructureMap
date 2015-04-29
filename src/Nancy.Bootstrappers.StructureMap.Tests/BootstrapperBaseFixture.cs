@@ -1,9 +1,10 @@
 #if !__MonoCS__ 
 namespace Nancy.Bootstrappers.StructureMap.Tests
 {
-    using Bootstrapper;
-    using Nancy.Tests.Unit.Bootstrapper.Base;
     using global::StructureMap;
+
+    using Nancy.Bootstrapper;
+    using Nancy.Tests.Unit.Bootstrapper.Base;
 
     public class BootstrapperBaseFixture : BootstrapperBaseFixtureBase<IContainer>
     {
