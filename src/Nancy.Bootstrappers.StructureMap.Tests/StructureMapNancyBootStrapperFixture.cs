@@ -2,12 +2,12 @@
 {
     using System;
     using System.Linq;
+
     using Nancy.Tests;
     using Nancy.Tests.Fakes;
-    using Xunit;
     using Nancy.Routing;
-    using Nancy.Bootstrapper;
-    using global::StructureMap;
+
+    using Xunit;
 
     public class StructureMapNancyBootstrapperFixture : IDisposable
     {
@@ -123,19 +123,15 @@
         [Fact]
         public void Should_resolve_IRequestStartup_types()
         {
-            //Given
+            // Given
             var nancyEngine = this.bootstrapper.GetEngine();
             var context = new NancyContext();
 
-            //When
+            // When
             nancyEngine.RequestPipelinesFactory(context);
-            var nestedContainer = context.Items.ElementAt(0).Value as Container;
 
-            //Then
-            nestedContainer.ShouldNotBeNull();
-            var registeredRequestStartups = nestedContainer.GetAllInstances<IRequestStartup>().ToArray();
-            registeredRequestStartups.Length.ShouldEqual(1);
-            registeredRequestStartups[0].ShouldBeOfType<FakeNancyRequestStartup>();
+            // Then
+            ((bool)context.ViewBag.RequestStartupHasRun).ShouldBeTrue();
         }
 
         public void Dispose()

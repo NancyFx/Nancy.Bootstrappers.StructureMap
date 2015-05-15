@@ -1,9 +1,11 @@
 namespace Nancy.Bootstrappers.StructureMap.Tests
 {
-    using Bootstrapper;
-    using Nancy.Bootstrappers.StructureMap;
-    using Nancy.Tests.Fakes;
     using global::StructureMap;
+
+    using Nancy.Bootstrapper;
+    using Nancy.Bootstrappers.StructureMap;
+
+    using Nancy.Tests.Fakes;
 
     public class FakeStructureMapNancyBootstrapper : StructureMapNancyBootstrapper
     {
@@ -56,6 +58,9 @@ namespace Nancy.Bootstrappers.StructureMap.Tests
     public class FakeNancyRequestStartup : IRequestStartup
     {
         public void Initialize(IPipelines pipelines, NancyContext context)
-        {}
+        {
+            // Observable side-effect of the execution of this IRequestStartup.
+            context.ViewBag.RequestStartupHasRun = true;
+        }
     }
 }
