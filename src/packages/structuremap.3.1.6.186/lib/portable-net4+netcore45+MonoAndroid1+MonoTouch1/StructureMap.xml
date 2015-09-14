@@ -2545,11 +2545,6 @@
             If a Profiled PluginGraph, returns its ultimate parent
             </summary>
         </member>
-        <member name="T:StructureMap.Graph.TypePath">
-            <summary>
-            Designates a CLR type that is loaded by name.
-            </summary>
-        </member>
         <member name="M:StructureMap.IInitializationExpression.AddRegistry``1">
             <summary>
             Creates and adds a Registry object of type T.  
