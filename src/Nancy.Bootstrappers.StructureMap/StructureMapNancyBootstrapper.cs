@@ -1,5 +1,3 @@
-using Nancy.Configuration;
-
 namespace Nancy.Bootstrappers.StructureMap
 {
     using System;
@@ -10,9 +8,10 @@ namespace Nancy.Bootstrappers.StructureMap
     using global::StructureMap.Configuration.DSL;
     using global::StructureMap.Pipeline;
 
-    using Nancy.Diagnostics;
-    using Nancy.Bootstrapper;
-    using Nancy.ViewEngines;
+    using Bootstrapper;
+    using Configuration;
+    using Diagnostics;
+    using ViewEngines;
 
     /// <summary>
     /// Nancy bootstrapper for the StructureMap container.
