@@ -1,3 +1,5 @@
+using Nancy.Configuration;
+
 namespace Nancy.Bootstrappers.StructureMap
 {
     using System;
@@ -62,6 +64,25 @@ namespace Nancy.Bootstrappers.StructureMap
         protected override INancyEngine GetEngineInternal()
         {
             return this.ApplicationContainer.GetInstance<INancyEngine>();
+        }
+
+        /// <summary>
+        /// Gets the <see cref="INancyEnvironmentConfigurator"/> used by th.
+        /// </summary>
+        /// <returns>An <see cref="INancyEnvironmentConfigurator"/> instance.</returns>
+        protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()
+        {
+            return this.ApplicationContainer.GetInstance<INancyEnvironmentConfigurator>();
+        }
+
+        /// <summary>
+        /// Registers an <see cref="INancyEnvironment"/> instance in the container.
+        /// </summary>
+        /// <param name="container">The container to register into.</param>
+        /// <param name="environment">The <see cref="INancyEnvironment"/> instance to register.</param>
+        protected override void RegisterNancyEnvironment(IContainer container, INancyEnvironment environment)
+        {
+            container.Configure(registry => registry.For<INancyEnvironment>().Use(environment));
         }
 
         /// <summary>
