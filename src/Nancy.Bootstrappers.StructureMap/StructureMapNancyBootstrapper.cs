@@ -3,11 +3,9 @@ namespace Nancy.Bootstrappers.StructureMap
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
     using global::StructureMap;
     using global::StructureMap.Configuration.DSL;
     using global::StructureMap.Pipeline;
-
     using Bootstrapper;
     using Configuration;
     using Diagnostics;
@@ -72,6 +70,16 @@ namespace Nancy.Bootstrappers.StructureMap
         protected override INancyEnvironmentConfigurator GetEnvironmentConfigurator()
         {
             return this.ApplicationContainer.GetInstance<INancyEnvironmentConfigurator>();
+        }
+
+        /// <summary>
+        /// Get the <see cref="INancyEnvironment" /> instance.
+        /// </summary>
+        /// <returns>An configured <see cref="INancyEnvironment" /> instance.</returns>
+        /// <remarks>The boostrapper must be initialised (<see cref="INancyBootstrapper.Initialise" />) prior to calling this.</remarks>
+        public override INancyEnvironment GetEnvironment()
+        {
+            return this.ApplicationContainer.GetInstance<INancyEnvironment>();
         }
 
         /// <summary>
