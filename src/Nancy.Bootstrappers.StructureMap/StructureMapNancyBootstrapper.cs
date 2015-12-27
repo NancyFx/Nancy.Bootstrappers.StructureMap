@@ -4,7 +4,6 @@ namespace Nancy.Bootstrappers.StructureMap
     using System.Collections.Generic;
     using System.Linq;
     using global::StructureMap;
-    using global::StructureMap.Configuration.DSL;
     using global::StructureMap.Pipeline;
     using Bootstrapper;
     using Configuration;
