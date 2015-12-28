@@ -84,7 +84,7 @@
       <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
       <Name>Nancy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nancy.BootStrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj">
+    <ProjectReference Include="..\Nancy.Bootstrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj">
       <Project>{EA7F58FE-4BF9-4636-9B9C-E07901187237}</Project>
       <Name>Nancy.Bootstrappers.StructureMap</Name>
     </ProjectReference>
