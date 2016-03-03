@@ -59,20 +59,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\Fakes\FakeNancyModuleWithBasePath.cs">
+    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Fakes\FakeNancyModuleWithBasePath.cs">
       <Link>FakeNancyModuleWithBasePath.cs</Link>
     </Compile>
-    <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\Fakes\FakeNancyModuleWithDependency.cs">
+    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Fakes\FakeNancyModuleWithDependency.cs">
       <Link>FakeNancyModuleWithDependency.cs</Link>
     </Compile>
-    <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\ShouldExtensions.cs">
+    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\ShouldExtensions.cs">
       <Link>ShouldExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\dependencies\Nancy\src\Nancy.Tests\Unit\Bootstrapper\Base\BootstrapperBaseFixtureBase.cs">
+    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Unit\Bootstrapper\Base\BootstrapperBaseFixtureBase.cs">
       <Link>BootstrapperBaseFixtureBase.cs</Link>
-    </Compile>
-    <Compile Include="..\..\dependencies\Nancy\src\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BootstrapperBaseFixture.cs" />
     <Compile Include="FakeNancyModuleWithRouteCacheProviderDependency.cs" />
@@ -80,7 +77,7 @@
     <Compile Include="StructureMapNancyBootstrapperFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\dependencies\Nancy\src\Nancy\Nancy.csproj">
+    <ProjectReference Include="..\..\dependencies\Nancy\src\Nancy.MSBuild\Nancy.csproj">
       <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
       <Name>Nancy</Name>
     </ProjectReference>
