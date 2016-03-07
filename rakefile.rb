@@ -8,12 +8,12 @@ NANCY_VERSION = ""
 OUTPUT = "build"
 CONFIGURATION = 'Release'
 SHARED_ASSEMBLY_INFO = 'dependencies/Nancy/SharedAssemblyInfo.cs'
-SOLUTION_FILE = 'src/Nancy.Bootstrappers.StructureMap.sln'
+SOLUTION_FILE = 'Nancy.Bootstrappers.StructureMap.sln'
 
 Albacore.configure do |config|
     config.log_level = :verbose
     config.msbuild.use :net4
-	config.xunit.command = "dependencies/Nancy/tools/xunit/xunit.console.x86.exe"
+    config.xunit.command = "dependencies/Nancy/tools/xunit/xunit.console.x86.exe"
 end
 
 desc "Compiles solution and runs unit tests"
@@ -22,18 +22,19 @@ task :default => [:clean, :version, :compile, :xunit, :publish, :package]
 #Add the folders that should be cleaned as part of the clean task
 CLEAN.include(OUTPUT)
 CLEAN.include(FileList["src/**/#{CONFIGURATION}"])
+CLEAN.include(FileList["test/**/#{CONFIGURATION}"])
 
 desc "Update shared assemblyinfo file for the build"
 assemblyinfo :version => [:clean] do |asm|
   NANCY_VERSION = get_assembly_version SHARED_ASSEMBLY_INFO
 
-  asm.version = NANCY_VERSION
-	asm.company_name = "Nancy"
-	asm.product_name = "Nancy.Bootstrappers.StructureMap"
-	asm.title = "Nancy.Bootstrappers.StructureMap"
-	asm.description = "An StructureMap Bootstrapper for the Nancy web framework"
-	asm.copyright = "Copyright (C) Andreas Hakansson, Steven Robbins and contributors"
-  asm.output_file = SHARED_ASSEMBLY_INFO
+    asm.version = NANCY_VERSION
+    asm.company_name = "Nancy"
+    asm.product_name = "Nancy.Bootstrappers.StructureMap"
+    asm.title = "Nancy.Bootstrappers.StructureMap"
+    asm.description = "A StructureMap Bootstrapper for the Nancy web framework"
+    asm.copyright = "Copyright (C) Andreas Hakansson, Steven Robbins and contributors"
+    asm.output_file = SHARED_ASSEMBLY_INFO
 end
 
 desc "Compile solution file"
@@ -53,7 +54,7 @@ end
 
 desc "Executes xUnit tests"
 xunit :xunit => [:compile] do |xunit|
-    tests = FileList["src/**/#{CONFIGURATION}/Nancy.Bootstrappers.StructureMap.Tests.dll"].exclude(/obj\//)
+    tests = FileList["test/**/#{CONFIGURATION}/Nancy.Bootstrappers.StructureMap.Tests.dll"].exclude(/obj\//)
     xunit.assemblies = tests
 end
 

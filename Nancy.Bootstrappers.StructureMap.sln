@@ -1,13 +1,16 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap", "Nancy.Bootstrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap", "src\Nancy.Bootstrappers.StructureMap.MSBuild\Nancy.Bootstrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Tests", "Nancy.Bootstrappers.StructureMap.Tests\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Tests", "test\Nancy.Bootstrappers.StructureMap.Tests.MSBuild\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy", "..\dependencies\Nancy\src\Nancy.MSBuild\Nancy.csproj", "{34576216-0DCA-4B0F-A0DC-9075E75A676F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy", "dependencies\Nancy\src\Nancy.MSBuild\Nancy.csproj", "{34576216-0DCA-4B0F-A0DC-9075E75A676F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FB10C07C-566C-45BE-B980-6C8609785D90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B7AE0508-8D71-484B-87BD-B0D05003B810}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +47,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA7F58FE-4BF9-4636-9B9C-E07901187237} = {FB10C07C-566C-45BE-B980-6C8609785D90}
+		{0BC2538C-BAB3-497D-898D-955A3A7A0F64} = {B7AE0508-8D71-484B-87BD-B0D05003B810}
+		{34576216-0DCA-4B0F-A0DC-9075E75A676F} = {FB10C07C-566C-45BE-B980-6C8609785D90}
 	EndGlobalSection
 EndGlobal

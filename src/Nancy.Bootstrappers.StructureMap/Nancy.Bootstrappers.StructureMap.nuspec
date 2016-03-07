@@ -5,7 +5,7 @@
     <version>0.6.0</version> <!-- Overridden by rake nuget task but a default is required in nuspec files -->
     <authors>Andreas Håkansson, Steven Robbins and contributors</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>An StructureMap bootstrapper for the Nancy web framework.</description>
+    <description>A StructureMap bootstrapper for the Nancy web framework.</description>
     <summary>Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra. Nancy aim at delivering a low ceremony approach to building light, fast web applications.</summary>
     <language>en-US</language>
     <copyright>Andreas Håkansson, Steven Robbins and contributors</copyright>

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0BC2538C-BAB3-497D-898D-955A3A7A0F64}</ProjectGuid>
+    <ProjectGuid>{EA7F58FE-4BF9-4636-9B9C-E07901187237}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.Bootstrappers.StructureMap.Tests</RootNamespace>
-    <AssemblyName>Nancy.Bootstrappers.StructureMap.Tests</AssemblyName>
+    <RootNamespace>Nancy.Bootstrappers.StructureMap</RootNamespace>
+    <AssemblyName>Nancy.Bootstrappers.StructureMap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,11 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="StructureMap, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
+      <HintPath>..\..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap.Net4, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
+      <HintPath>..\..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -49,41 +49,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit, Version=1.9.1.1600, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="xunit.extensions, Version=1.9.1.1600, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensions.1.9.1\lib\net20\xunit.extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Fakes\FakeNancyModuleWithBasePath.cs">
-      <Link>FakeNancyModuleWithBasePath.cs</Link>
+    <Compile Include="..\..\dependencies\Nancy\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Fakes\FakeNancyModuleWithDependency.cs">
-      <Link>FakeNancyModuleWithDependency.cs</Link>
+    <Compile Include="..\Nancy.Bootstrappers.StructureMap\StructureMapNancyBootstrapper.cs">
+      <Link>StructureMapNancyBootstrapper.cs</Link>
     </Compile>
-    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\ShouldExtensions.cs">
-      <Link>ShouldExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\..\dependencies\Nancy\test\Nancy.Tests\Unit\Bootstrapper\Base\BootstrapperBaseFixtureBase.cs">
-      <Link>BootstrapperBaseFixtureBase.cs</Link>
-    </Compile>
-    <Compile Include="BootstrapperBaseFixture.cs" />
-    <Compile Include="FakeNancyModuleWithRouteCacheProviderDependency.cs" />
-    <Compile Include="FakeStructureMapNancyBootstrapper.cs" />
-    <Compile Include="StructureMapNancyBootstrapperFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\dependencies\Nancy\src\Nancy.MSBuild\Nancy.csproj">
       <Project>{34576216-0DCA-4B0F-A0DC-9075E75A676F}</Project>
       <Name>Nancy</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nancy.Bootstrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj">
-      <Project>{EA7F58FE-4BF9-4636-9B9C-E07901187237}</Project>
-      <Name>Nancy.Bootstrappers.StructureMap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
