@@ -6,16 +6,19 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>a416561a-5817-42ee-95c9-4c91824420f9</ProjectGuid>
-    <RootNamespace>Nancy.Bootstrappers.StructureMap</RootNamespace>
+    <ProjectGuid>07930cae-2b0e-4a09-81c8-f844dbd67a5e</ProjectGuid>
+    <RootNamespace>Nancy.Bootstrappers.StructureMap.Tests</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AssemblyName>Nancy.Bootstrappers.StructureMap</AssemblyName>
+    <AssemblyName>Nancy.Bootstrappers.StructureMap.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
