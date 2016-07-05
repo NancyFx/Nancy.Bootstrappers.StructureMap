@@ -1,21 +1,25 @@
 ﻿{
-    "version": "2.0.0-*",
-    "description": "An StructureMap bootstrapper for the Nancy web framework.",
-    "authors": [ "Andreas Håkansson, Steven Robbins and contributors" ],
-
-    "packOptions": {
-        "tags": [ "Nancy", "StructureMap" ],
-        "projectUrl": "http://nancyfx.org",
-        "licenseUrl": "https://github.com/NancyFx/Nancy/blob/master/license.txt",
-        "iconUrl": "http://nancyfx.org/nancy-nuget.png"
+  "version": "2.0.0-*",
+  "description": "An StructureMap bootstrapper for the Nancy web framework.",
+  "authors": [
+    "Andreas Håkansson, Steven Robbins and contributors"
+  ],
+  "packOptions": {
+    "tags": [
+      "Nancy",
+      "StructureMap"
+    ],
+    "projectUrl": "http://nancyfx.org",
+    "licenseUrl": "https://github.com/NancyFx/Nancy/blob/master/license.txt",
+    "iconUrl": "http://nancyfx.org/nancy-nuget.png"
+  },
+  "dependencies": {
+    "Nancy": {
+      "target": "project"
     },
-
-    "dependencies": {
-        "Nancy": { "target": "project" },
-        "StructureMap": "4.1.1.372"
-    },
-
-    "frameworks": {
-        "net452": { }
-    }
+    "StructureMap": "4.1.1.372"
+  },
+  "frameworks": {
+    "net452": {}
+  }
 }
