@@ -1,5 +1,5 @@
 ﻿{
-  "version": "2.0.0-*",
+  "version": "2.0.0-Pre0",
   "description": "An StructureMap bootstrapper for the Nancy web framework.",
   "authors": [
     "Andreas Håkansson, Steven Robbins and contributors"
