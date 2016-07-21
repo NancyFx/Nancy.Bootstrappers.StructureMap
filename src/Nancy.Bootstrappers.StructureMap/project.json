@@ -17,9 +17,14 @@
     "Nancy": {
       "target": "project"
     },
-    "StructureMap": "4.1.1.372"
+    "StructureMap": "4.2.0.402"
   },
   "frameworks": {
+    "netstandard1.6": {
+      "imports": [
+        "dnxcore50"
+      ]
+    },
     "net452": {}
   }
 }
