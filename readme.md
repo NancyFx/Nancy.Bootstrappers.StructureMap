@@ -26,7 +26,7 @@ public class Bootstrapper : StructureMapNancyBootstrapper
 
     protected override void ConfigureApplicationContainer(IContainer existingContainer)
     {
-        // Perform registation that should have an application lifetime
+        // Perform registration that should have an application lifetime
     }
 
     protected override void ConfigureRequestContainer(IContainer container, NancyContext context)
