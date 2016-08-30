@@ -17,9 +17,14 @@
     "Nancy": {
       "target": "project"
     },
-    "StructureMap": "4.1.1.372"
+    "StructureMap": "4.3.0"
   },
   "frameworks": {
+    "netstandard1.6": {
+      "imports": [
+        "dotnet54"
+      ]
+    },
     "net452": {}
   }
 }
