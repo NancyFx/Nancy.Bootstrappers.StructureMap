@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "2.0.0-*",
   "description": "An StructureMap bootstrapper for the Nancy web framework.",
   "authors": [
@@ -17,7 +17,7 @@
     "Nancy": {
       "target": "project"
     },
-    "StructureMap": "4.3.0"
+    "StructureMap": "4.4.1"
   },
   "frameworks": {
     "netstandard1.6": {
