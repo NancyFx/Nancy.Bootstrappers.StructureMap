@@ -1,56 +1,47 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap", "src\Nancy.Bootstrappers.StructureMap.MSBuild\Nancy.Bootstrappers.StructureMap.csproj", "{EA7F58FE-4BF9-4636-9B9C-E07901187237}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{157294BD-5A2A-4BB9-BFB7-2598E61307E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy.Bootstrappers.StructureMap.Tests", "test\Nancy.Bootstrappers.StructureMap.Tests.MSBuild\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{0BC2538C-BAB3-497D-898D-955A3A7A0F64}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{4D21F440-CC56-4D9F-9395-6652A8E5A81C}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nancy", "dependencies\Nancy\src\Nancy.MSBuild\Nancy.csproj", "{34576216-0DCA-4B0F-A0DC-9075E75A676F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0F27EACB-1EC5-4B77-BA0B-E067B75E4D63}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FB10C07C-566C-45BE-B980-6C8609785D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Bootstrappers.StructureMap", "src\Nancy.Bootstrappers.StructureMap\Nancy.Bootstrappers.StructureMap.csproj", "{A416561A-5817-42EE-95C9-4C91824420F9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B7AE0508-8D71-484B-87BD-B0D05003B810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Bootstrappers.StructureMap.Tests", "test\Nancy.Bootstrappers.StructureMap.Tests\Nancy.Bootstrappers.StructureMap.Tests.csproj", "{07930CAE-2B0E-4A09-81C8-F844DBD67A5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy", "dependencies\Nancy\src\Nancy\Nancy.csproj", "{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		MonoDebug|Any CPU = MonoDebug|Any CPU
-		MonoRelease|Any CPU = MonoRelease|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.MonoDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.MonoDebug|Any CPU.Build.0 = Debug|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.MonoRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.MonoRelease|Any CPU.Build.0 = Release|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.MonoDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.MonoDebug|Any CPU.Build.0 = Debug|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.MonoRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.MonoRelease|Any CPU.Build.0 = Release|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.MonoDebug|Any CPU.ActiveCfg = MonoDebug|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.MonoDebug|Any CPU.Build.0 = MonoDebug|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.MonoRelease|Any CPU.ActiveCfg = MonoRelease|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.MonoRelease|Any CPU.Build.0 = MonoRelease|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A416561A-5817-42EE-95C9-4C91824420F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A416561A-5817-42EE-95C9-4C91824420F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A416561A-5817-42EE-95C9-4C91824420F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A416561A-5817-42EE-95C9-4C91824420F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07930CAE-2B0E-4A09-81C8-F844DBD67A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07930CAE-2B0E-4A09-81C8-F844DBD67A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07930CAE-2B0E-4A09-81C8-F844DBD67A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07930CAE-2B0E-4A09-81C8-F844DBD67A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EA7F58FE-4BF9-4636-9B9C-E07901187237} = {FB10C07C-566C-45BE-B980-6C8609785D90}
-		{0BC2538C-BAB3-497D-898D-955A3A7A0F64} = {B7AE0508-8D71-484B-87BD-B0D05003B810}
-		{34576216-0DCA-4B0F-A0DC-9075E75A676F} = {FB10C07C-566C-45BE-B980-6C8609785D90}
+		{A416561A-5817-42EE-95C9-4C91824420F9} = {157294BD-5A2A-4BB9-BFB7-2598E61307E5}
+		{07930CAE-2B0E-4A09-81C8-F844DBD67A5E} = {0F27EACB-1EC5-4B77-BA0B-E067B75E4D63}
+		{ACCFC98C-DF9A-4D8A-BEC1-D1C22BA513E4} = {157294BD-5A2A-4BB9-BFB7-2598E61307E5}
 	EndGlobalSection
 EndGlobal
